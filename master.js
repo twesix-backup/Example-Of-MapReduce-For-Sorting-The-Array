@@ -13,7 +13,7 @@ var files= [
         './temp/w10.txt'
     ];
 
-function map(file='./0.001e8.txt',workers=cluster.workers)
+function map(file='./resources/0.001e8.txt',workers=cluster.workers)
 {
     console.log('>>>> map start');
     for(var id in workers)
@@ -25,7 +25,7 @@ function map(file='./0.001e8.txt',workers=cluster.workers)
 function reduce(files,concat=null)
 {
     console.log('reduce start');
-    var result=fs.createWriteStream('./result.txt');
+    var result=fs.createWriteStream('./resources/result.txt');
     concat=function(file,result)
     {
         var stm=fs.createReadStream(file);
