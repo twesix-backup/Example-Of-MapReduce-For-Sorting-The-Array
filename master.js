@@ -1,3 +1,4 @@
+var start_time=new Date().getTime();
 var cluster=require('cluster');
 var fs=require('fs');
 var files= [
@@ -13,7 +14,7 @@ var files= [
         './temp/w10.txt'
     ];
 
-function map(file='./resources/0.001e8.txt',workers=cluster.workers)
+function map(file='./resources/0.01e8.txt',workers=cluster.workers)
 {
     console.log('>>>> map start');
     for(var id in workers)
@@ -31,7 +32,6 @@ function reduce(files,concat=null)
         var stm=fs.createReadStream(file);
         stm.on('data',function(chunk)
         {
-            console.log(chunk);
             result.write(chunk);
             result.uncork();
         });
@@ -51,6 +51,7 @@ function reduce(files,concat=null)
         else
         {
             result.close();
+            console.log(`sorting complete, costs ${new Date().getTime()-start_time}ms.`)
         }
     }
     result.on('open',next);

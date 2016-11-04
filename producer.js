@@ -1,11 +1,11 @@
 var fs=require('fs');
 
-var total=1e1;
+var total=9e1;
 var done=0;
 var timer;
 function produce()
 {
-    var file=fs.createWriteStream('./data.txt');
+    var file=fs.createWriteStream('./resources/0.009e8.txt');
     file.on('open',function()
     {
         timer=setInterval(function()
